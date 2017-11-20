@@ -1,19 +1,35 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
-
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button menuClose ion-item *ngFor="let p of pagesMenu" (click)="openPage(p)">
+                {{p.title}}
+            </button>
+        </ion-list>
+    </ion-content>
 </ion-menu>
-
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <p style="margin-top:0px;margin-bottom:0px;float:right;padding-right: 10px;">
+            <span id="actualDate"></span>
+        </p>
+        <p style="margin-top:0px;margin-bottom:0px;float:left;">Olá, Marina</p>
+        <p style="margin-top:0px;margin-bottom:0px;clear:left;">Modo: Caixa</p>
+    </ion-navbar>
+</ion-header>
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-footer>
+    <ion-toolbar>
+        <ion-tabs #footerTabs selectedIndex=0>
+            <ion-tab [root]="cookPage" tabIcon="md-restaurant" tabTitle="Preparação" (ionSelect)="onTabChange()"></ion-tab>
+            <ion-tab [root]="payPage" tabIcon="logo-usd" tabTitle="Pagamentos" (ionSelect)="onTabChange()"></ion-tab>
+        </ion-tabs>
+    </ion-toolbar>
+</ion-footer>
